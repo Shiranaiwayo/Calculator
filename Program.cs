@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using CalculatorLibrary;
 
-namespace Exercises1
+namespace CalculatorProgram
 {
     internal class Program
     {
@@ -9,6 +10,8 @@ namespace Exercises1
             bool endApp = false;
             Console.WriteLine("Console Calucator in C#\r");
             Console.WriteLine("------------------------\n");
+
+            Calculator calculator = new Calculator();
 
             while (!endApp)
             {
@@ -53,7 +56,7 @@ namespace Exercises1
                 else
                     try
                     {
-                        result = Calculator.DoOperation(cleanNum1, cleanNum2, op);
+                        result = calculator.DoOperation(cleanNum1, cleanNum2, op);
                         if (double.IsNaN(result))
                         {
                             Console.WriteLine("This operation will result in a mathematical error.\n");
@@ -74,37 +77,8 @@ namespace Exercises1
             return;
         }
 
-     
-        class Calculator
-        {
-            public static double DoOperation(double num1, double num2, string op)
-            {
-                double result = double.NaN; //Default value is "not-a-number", if an operation, such as division, could result in an error.
-                //Do the math with a switch statement
-                switch (op)
-                {
-                    case "a":
-                        result = num1 + num2;
-                        break;
-                    case "s":
-                        result = num1 - num2;
-                        break;
-                    case "m":
-                        result = num1 * num2;
-                        break;
-                    case "d":
-                        //ask the user to enter a non-zero divisor
-                        if (num2 != 0)
-                            result = num1 / num2;
-                        else
-                            throw new DivideByZeroException("Cannot divide by zero.");
-                        break;
-                    default:
-                        throw new InvalidOperationException("Invalid operation.");
-                }
-                return result;
-            }
-        }
+
+        
 
 
 
